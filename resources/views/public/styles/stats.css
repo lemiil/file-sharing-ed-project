@@ -1,0 +1,38 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Roboto', sans-serif;
+}
+
+.content {
+    padding-top: 60px;
+}
+
+.chart-container {
+    width: 100%;
+    height: 400px;
+}
+
+.custom-card {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+}
+
+.custom-card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+.custom-card-text {
+    font-size: 1.2rem;
+    color: #777;
+    margin-top: 10px;
+}

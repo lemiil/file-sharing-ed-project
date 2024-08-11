@@ -1,0 +1,44 @@
+{% extends 'base.template.html' %}
+{% block title %}{{ file.file_name }}{% endblock %}
+{% block content %}
+<link href="/resources/views/public/styles/mainstyle.css" rel="stylesheet">
+<div class="welcome">
+    <h2 style='text-align: center' class="h2">welcome to</h2>
+</div>
+<h1 style='text-align: center; font-size: 180px' class="display-1 retroshadow">Files</h1>
+<p style='text-align:center; color:rgb(170, 168, 168)'>I have no imagination for names</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+
+        <div class="col-md-4 mb-4">
+            <a href="/list">
+                <div class="custom-card">
+                    <div class="custom-card-title">See file list</div>
+
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="/upload">
+                <div class="custom-card">
+
+                    <div class="custom-card-title">Upload file</div>
+
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="/stats">
+                <div class="custom-card">
+
+                    <div class="custom-card-title">See stats</div>
+
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="lemiil">
+    <p>Made by lemiil</p>
+</div>
+{% endblock %}

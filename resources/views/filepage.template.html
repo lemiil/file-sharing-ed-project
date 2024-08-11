@@ -1,0 +1,54 @@
+{% extends 'base.template.html' %}
+{% block title %}{{ file.file_name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="\resources\views\public\styles\filepage.css">
+<div class="container my-5 content" style="padding-top: 80px;">
+    <h2 class="mb-4">Info:</h2>
+    <ul class="list-group list-group-flush file-info-list mb-5">
+        {% if file.file_name is defined %}
+        <li class="list-group-item"><strong>File name:</strong> {{ file.file_name }}.{{ file.file_extension }}
+        </li>
+        {% endif %}
+
+        {% if file.created_at is defined %}
+        <li class="list-group-item"><strong>Upload date:</strong> {{ file.uploaded_at|date('d.m.Y H:i') }}</li>
+        {% endif %}
+
+        {% if metadata %}
+        <li class="list-group-item">
+            <strong>Metadata:</strong>
+            <button class="btn btn-outline-primary btn-sm ms-2" onclick="toggleDescription()">Show/Close</button>
+            <pre id="description" class="mt-2 p-3 bg-light rounded" style="display: none;">{{ file.metadata }}</pre>
+        </li>
+        {% endif %}
+    </ul>
+
+    {% if isImage %}
+    <h3 class="mb-3">Image:</h3>
+    <img src="{{ file.file_path }}" alt="{{ file.file_name }}" class="img-fluid rounded shadow" data-aos="zoom-in">
+    {% elseif isVideo %}
+    <h3 class="mb-3">Video:</h3>
+    <video controls class="w-100 rounded shadow">
+        <source src="{{ file.file_path }}" type="video/{{ file.file_extension }}">
+    </video>
+    {% elseif isAudio %}
+    <h3 class="mb-3">Audio:</h3>
+    <audio controls class="w-100 rounded shadow">
+        <source src="{{ file.file_path }}" type="audio/{{ file.file_extension }}">
+    </audio>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="https://files.local/download/{{ fileId }}" class="btn btn-primary">Download</a>
+    </div>
+</div>
+
+<script src="\resources\views\public\js\filepage.js">
+
+
+</script>
+
+<style>
+
+</style>
+{% endblock %}

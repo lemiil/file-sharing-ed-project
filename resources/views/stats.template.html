@@ -1,0 +1,84 @@
+{% extends 'base.template.html' %}
+{% block title %}Stats{% endblock %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="\resources\views\public\styles\stats.css">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+
+        <div class="col-md-4 mb-4">
+            <div class="custom-card">
+                <div class="custom-card-title">{{ filecount }} Files</div>
+                <div class="custom-card-text">Total files uploaded</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="custom-card">
+                <div class="custom-card-title">{{ totalsize }}</div>
+                <div class="custom-card-text">Total space used</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container chart-container mt-4">
+    <canvas id="chart2"></canvas>
+</div>
+
+<script>
+    const generateColors = (numColors) => {
+        const colors = [];
+        for (let i = 0; i < numColors; i++) {
+            const color = `hsl(${i * 360 / numColors}, 60%, 65%)`;
+            colors.push(color);
+        }
+        return colors;
+    };
+
+    const data2 = {
+        labels: {{ fileExtensions| json_encode | raw }},
+    datasets: [{
+
+        data: {{ fileCount| json_encode | raw }},
+        backgroundColor: generateColors(5),
+        borderWidth: 2,
+        borderColor: '#fff'
+        }]
+    };
+
+    const config2 = {
+        type: 'pie',
+        data: data2,
+        options: {
+            plugins: {
+                legend: {
+                    position: null,
+                    labels: {
+                        color: '#555',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'File extensions',
+                    color: '#333',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+    };
+
+
+    new Chart(document.getElementById('chart2'), config2);
+
+</script>
+
+
+{% endblock %}
